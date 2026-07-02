@@ -20,7 +20,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Get Website
-      run: curl -s $URL -o $FILE_WEBSITE
+      run: curl $URL -o $FILE_WEBSITE
     - name: Create JSON
       run: |
         echo "{" > $FILE_TMP
