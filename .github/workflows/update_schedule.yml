@@ -3,7 +3,7 @@ name: "Update daily - Horoscope"
 #on: push
 on:   
   schedule:
-    - cron: "00 22 * * *"
+    - cron: "02 18 * * *"
 
 env:
   FILE_WEBSITE: website.html
