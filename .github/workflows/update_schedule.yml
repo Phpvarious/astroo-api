@@ -3,7 +3,7 @@ name: "Update daily - Horoscope"
 #on: push
 on:   
   schedule:
-    - cron: "30 20 * * *"
+    - cron: "40 20 * * *"
       timezone: "Europe/Paris"
 
 env:
