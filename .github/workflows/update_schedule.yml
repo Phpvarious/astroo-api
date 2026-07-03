@@ -25,7 +25,7 @@ jobs:
       run: |
         echo "{" > $FILE_TMP
         echo "  \"date\": \"$(date +%F)\"," >> $FILE_TMP
-        echo "  \"BELIER\": \"$(cat $FILE_WEBSITE |grep "Amour</h3>")\"," >> $FILE_TMP
+        echo "  \"BELIER\": \"$(cat $FILE_WEBSITE |grep "Amour</h3>" |awk -F'</div>' '{ print $1 }')\"," >> $FILE_TMP
         sed -i '$ s/.$//' $FILE_TMP
         echo "}" >> $FILE_TMP
     - name: Recode UTF8
