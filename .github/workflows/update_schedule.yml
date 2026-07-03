@@ -13,7 +13,7 @@ jobs:
 
   build_jour:
     env:
-      URL: http://www.astroo.com/horoscope.php
+      URL: https://www.20minutes.fr/horoscope/horoscope-belier
       FILE: docs/jour.json
       FILE_TMP: docs/jour_tmp.json
     runs-on: ubuntu-latest
@@ -25,7 +25,7 @@ jobs:
       run: |
         echo "{" > $FILE_TMP
         echo "  \"date\": \"$(date +%F)\"," >> $FILE_TMP
-        echo "  \"BELIER\": \"$(cat $FILE_WEBSITE |grep "$SIGNE</a>")\"," >> $FILE_TMP
+        echo "  \"BELIER\": \"$(cat $FILE_WEBSITE |grep "Amour</h3>")\"," >> $FILE_TMP
         sed -i '$ s/.$//' $FILE_TMP
         echo "}" >> $FILE_TMP
     - name: Recode UTF8
