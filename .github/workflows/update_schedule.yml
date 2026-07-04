@@ -26,6 +26,8 @@ jobs:
         echo "{" > $FILE_TMP
         echo "  \"date\": \"$(date +%F)\"," >> $FILE_TMP
         echo "  \"1\": \"$(cat $FILE_WEBSITE |grep '<p class="content-intro">')\"," >> $FILE_TMP
+        echo "  \"2\": \"$(cat $FILE_WEBSITE |grep '<p class="content-intro">' |awk -F'<p class="content-intro">' '{ print $1 }')\"," >> $FILE_TMP
+        echo "  \"3\": \"$(cat $FILE_WEBSITE |grep '<p class="content-intro">' |awk -F'<p class="content-intro">' '{ print $2 }')\"," >> $FILE_TMP
         sed -i '$ s/.$//' $FILE_TMP
         echo "}" >> $FILE_TMP
     - name: Recode UTF8
