@@ -26,7 +26,8 @@ jobs:
         echo "{" > $FILE
         echo "  \"date\": \"$(date +%F)\"," >> $FILE
         echo "  \"1\": \"$(cat $FILE_WEBSITE |grep '<p class="content-intro">' |awk -F'<p class="content-intro">' '{ print $2 }' |awk -F'</p>' '{ print $1 }' |sed 's/"/\\"/g' |sed 's/\ *$//g')\"," >> $FILE
-        echo "  \"2\": \"$(cat $FILE_WEBSITE |grep 'class="astro-section-glass"')\"," >> $FILE
+        echo "  \"2\": \"$(cat $FILE_WEBSITE |grep 'class="astro-section-glass"' |awk -F'<div id="section-2" class="astro-section-glass">' '{ print $1 }')\"," >> $FILE
+        echo "  \"3\": \"$(cat $FILE_WEBSITE |grep 'class="astro-section-glass"' |awk -F'<div id="section-2" class="astro-section-glass">' '{ print $1 }')\"," >> $FILE
         sed -i '$ s/.$//' $FILE
         echo "}" >> $FILE
     - name: Commit JSON
