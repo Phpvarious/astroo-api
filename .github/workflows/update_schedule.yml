@@ -23,17 +23,12 @@ jobs:
       run: curl $URL -o $FILE_WEBSITE
     - name: Create JSON
       run: |
-        echo "{" > $FILE_TMP
-        echo "  \"date\": \"$(date +%F)\"," >> $FILE_TMP
-        echo "  \"1\": \"$(cat $FILE_WEBSITE |grep '<p class="content-intro">' |awk -F'<p class="content-intro">' '{ print $2 }' |awk -F'</p>' '{ print $1 }')\"," >> $FILE_TMP
-        echo "  \"1\": \"$(cat $FILE_WEBSITE |grep '<p class="content-intro">' |awk -F'<p class="content-intro">' '{ print $2 }' |awk -F'</p>' '{ print $1 }' |sed 's/"/\\"/g' |sed 's/\ *$//g')\"," >> $FILE_TMP
-        sed -i '$ s/.$//' $FILE_TMP
-        echo "}" >> $FILE_TMP
-    - name: Recode UTF8
-      run: |
-        sudo apt-get update
-        sudo apt-get -y install recode
-        cat $FILE_TMP | recode html..utf8 > $FILE
+        echo "{" > $FILE
+        echo "  \"date\": \"$(date +%F)\"," >> $FILE
+        echo "  \"1\": \"$(cat $FILE_WEBSITE |grep '<p class="content-intro">' |awk -F'<p class="content-intro">' '{ print $2 }' |awk -F'</p>' '{ print $1 }')\"," >> $FILE
+        echo "  \"1\": \"$(cat $FILE_WEBSITE |grep '<p class="content-intro">' |awk -F'<p class="content-intro">' '{ print $2 }' |awk -F'</p>' '{ print $1 }' |sed 's/"/\\"/g' |sed 's/\ *$//g')\"," >> $FILE
+        sed -i '$ s/.$//' $FILE
+        echo "}" >> $FILE
     - name: Commit JSON
       run: |
         git config --local user.email "action@github.com"
