@@ -28,6 +28,8 @@ jobs:
         echo "  \"1\": \"$(cat $FILE_WEBSITE |grep '<p class="content-intro">')\"," >> $FILE_TMP
         echo "  \"2\": \"$(cat $FILE_WEBSITE |grep '<p class="content-intro">' |awk -F'<p class="content-intro">' '{ print $1 }')\"," >> $FILE_TMP
         echo "  \"3\": \"$(cat $FILE_WEBSITE |grep '<p class="content-intro">' |awk -F'<p class="content-intro">' '{ print $2 }')\"," >> $FILE_TMP
+        echo "  \"4\": \"$(cat $FILE_WEBSITE |grep '<p class="content-intro">' |awk -F'<p class="content-intro">' '{ print $2 }' |awk -F'</p>' '{ print $1 }')\"," >> $FILE_TMP
+        echo "  \"5\": \"$(cat $FILE_WEBSITE |grep '<p class="content-intro">' |awk -F'<p class="content-intro">' '{ print $2 }' |awk -F'</p>' '{ print $2 }')\"," >> $FILE_TMP
         sed -i '$ s/.$//' $FILE_TMP
         echo "}" >> $FILE_TMP
     - name: Recode UTF8
