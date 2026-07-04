@@ -14,8 +14,8 @@ jobs:
   build_jour:
     env:
       URL: https://www.mon-horoscope-du-jour.com/horoscopes/quotidien/belier.htm
-      FILE: docs/jour.json
-      FILE_TMP: docs/jour_tmp.json
+      FILE: docs/jour2.json
+      FILE_TMP: docs/jour2_tmp.json
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
