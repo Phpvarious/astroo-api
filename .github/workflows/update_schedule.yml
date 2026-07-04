@@ -31,7 +31,14 @@ jobs:
         echo "  \"Argent\": \"$(cat $FILE_WEBSITE |grep 'Argent</h2>' |awk -F'<div class="astro-section-text">' '{ print $4 }' |awk -F'</p>' '{ print $1 }' |sed 's/<p>//' |sed 's/"/\\"/g' |sed 's/\ *$//g')\"," >> $FILE
         echo "  \"Travail\": \"$(cat $FILE_WEBSITE |grep 'Travail</h2>' |awk -F'<div class="astro-section-text">' '{ print $5 }' |awk -F'</p>' '{ print $1 }' |sed 's/<p>//' |sed 's/"/\\"/g' |sed 's/\ *$//g')\"," >> $FILE
         echo "  \"Loisirs\": \"$(cat $FILE_WEBSITE |grep 'Loisirs</h2>' |awk -F'<div class="astro-section-text">' '{ print $6 }' |awk -F'</p>' '{ print $1 }' |sed 's/<p>//' |sed 's/"/\\"/g' |sed 's/\ *$//g')\"," >> $FILE
-        echo "  \"nb1\": \"$(cat $FILE_WEBSITE |grep 'lucky-ball">' |awk -F'<div class="lucky-ball">' '{ print $2 }' |awk -F'</span>' '{ print $1 }' |sed 's/<span>//');$(cat $FILE_WEBSITE |grep 'lucky-ball">' |awk -F'<div class="lucky-ball">' '{ print $3 }' |awk -F'</span>' '{ print $1 }' |sed 's/<span>//');$(cat $FILE_WEBSITE |grep 'lucky-ball">' |awk -F'<div class="lucky-ball">' '{ print $4 }' |awk -F'</span>' '{ print $1 }' |sed 's/<span>//');$(cat $FILE_WEBSITE |grep 'lucky-ball">' |awk -F'<div class="lucky-ball">' '{ print $5 }' |awk -F'</span>' '{ print $1 }' |sed 's/<span>//');$(cat $FILE_WEBSITE |grep 'lucky-ball">' |awk -F'<div class="lucky-ball">' '{ print $6 }' |awk -F'</span>' '{ print $1 }' |sed 's/<span>//');$(cat $FILE_WEBSITE |grep 'lucky-ball">' |awk -F'<div class="lucky-ball star-ball">' '{ print $7 }' |awk -F'</span>' '{ print $1 }' |sed 's/<span>//')\"," >> $FILE
+        echo "  \"nb1\": \"
+          $(cat $FILE_WEBSITE |grep 'lucky-ball">' |awk -F'<div class="lucky-ball">' '{ print $2 }' |awk -F'</span>' '{ print $1 }' |sed 's/<span>//');
+          $(cat $FILE_WEBSITE |grep 'lucky-ball">' |awk -F'<div class="lucky-ball">' '{ print $3 }' |awk -F'</span>' '{ print $1 }' |sed 's/<span>//');
+          $(cat $FILE_WEBSITE |grep 'lucky-ball">' |awk -F'<div class="lucky-ball">' '{ print $4 }' |awk -F'</span>' '{ print $1 }' |sed 's/<span>//');
+          $(cat $FILE_WEBSITE |grep 'lucky-ball">' |awk -F'<div class="lucky-ball">' '{ print $5 }' |awk -F'</span>' '{ print $1 }' |sed 's/<span>//');
+          $(cat $FILE_WEBSITE |grep 'lucky-ball">' |awk -F'<div class="lucky-ball">' '{ print $6 }' |awk -F'</span>' '{ print $1 }' |sed 's/<span>//');
+          $(cat $FILE_WEBSITE |grep 'lucky-ball">' |awk -F'<div class="lucky-ball star-ball">' '{ print $1 }' |awk -F'</span>' '{ print $1 }' |sed 's/<span>//')
+        \"," >> $FILE
         echo "  \"nb2\": \"$(cat $FILE_WEBSITE |grep 'lucky-ball">' |awk -F'<div class="lucky-ball">' '{ print $3 }' |awk -F'</span>' '{ print $1 }' |sed 's/<span>//')\"," >> $FILE
         echo "  \"5\": \"$(cat $FILE_WEBSITE |grep 'class="astro-section-glass"' |awk -F'<div id="section-2" class="astro-section-glass">' '{ print $1 }')\"," >> $FILE
         sed -i '$ s/.$//' $FILE
